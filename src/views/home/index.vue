@@ -2,7 +2,7 @@
  * @Author: litao 2412777276@qq.com
  * @Date: 2023-05-22 09:29:51
  * @LastEditors: litao 2412777276@qq.com
- * @LastEditTime: 2023-05-24 16:19:33
+ * @LastEditTime: 2023-05-25 17:19:32
  * @FilePath: \vue-product\src\views\home\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -45,11 +45,32 @@
             <div class="count-down">
               <span class="count-title">14点场</span>
               <van-count-down :time="time">
-                
               </van-count-down>
             </div> 
           </div>
-          <div class="item-info"></div>
+          <div class="item-info">
+            <div class="item-content">
+              <img src="../../assets/image/home/demo1.png"/>
+              <span class="price">￥298</span>
+              <span class="old-price">￥399</span>
+            </div>
+            <div class="item-content">
+              <img src="../../assets/image/home/demo2.png"/>
+              <span class="price">￥298</span>
+              <span class="old-price">￥399</span>
+            </div>
+            <div class="item-content">
+              <img src="../../assets/image/home/demo3.png"/>
+              <span class="price">￥298</span>
+              <span class="old-price">￥399</span>
+            </div>
+          </div>
+        </router-link>
+        <router-link tag="li" class="top-right" to="/foundGoodGoods">
+          <div class="item-top">
+            <span class="top-title">发现好货</span>
+            <span class="good-tag">品质好物</span>
+          </div>
         </router-link>
       </ul>
       <ul class="spike-center"></ul>
