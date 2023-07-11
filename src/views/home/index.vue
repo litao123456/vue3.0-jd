@@ -2,7 +2,7 @@
  * @Author: litao 2412777276@qq.com
  * @Date: 2023-05-22 09:29:51
  * @LastEditors: litao 2412777276@qq.com
- * @LastEditTime: 2023-06-09 16:04:32
+ * @LastEditTime: 2023-07-11 15:29:45
  * @FilePath: \vue-product\src\views\home\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -180,6 +180,18 @@
         </van-tab>
       </van-tabs>
     </div>
+    <div class="ballWrap">
+      <transition
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter">
+        <div class="ball" v-show="show">
+          <div class="inner-ball">
+            <svg-icon icon-class="add"></svg-icon>
+          </div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -220,6 +232,10 @@ export default {
         url: './search'
       }
     ])
+    const ball = reactive({
+      el: null,
+      show: false
+    })
     const endTime = '2023-05-26 16:20:00'
     const time = ref(new Date(endTime).getTime() - Date.now())
     proxy.$http.get('http://test.happymmall.com/home/homeData').then(res => {
@@ -228,12 +244,39 @@ export default {
       state.tabList = tabList
     })
     const addCart = el => {
-      
+      ball.el = el.target
+      ball.show = true
+    }
+    const beforeEnter = el => {
+      const dom = ball.el
+      const domRect = dom.getBoundingClientRect()
+      const y = -(window.innerHeight - domRect.top - 10)
+      const x = -(window.innerWidth * 0.6 - domRect.left)
+      el.style.display = 'block'
+      el.style.transform = `translate(0, ${y}px)`
+      const innerBall = document.querySelector('.inner-ball')
+      innerBall.style.transform = `translate(${x}px, 0)`
+    }
+    const enter = (el, done) => {
+      document.body.offsetHeight // 激发重绘
+      el.style.transform = 'translate(0, 0)'
+      const innerBall = document.querySelector('.inner-ball')
+      innerBall.style.transform = 'translate(0, 0)'
+      window.addEventListener('transitionend', done)
+    }
+    const afterEnter = el => {
+      ball.show = false
+      el.style.display = 'none'
     }
     return {
       ...toRefs(state),
       tagList,
-      time
+      time,
+      addCart,
+      beforeEnter,
+      enter,
+      afterEnter,
+      ...toRefs(ball)
     }
   },
   
