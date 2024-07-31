@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="page-header">
-      <span @click="$router.go(-1)">
+      <span>
         <svg-icon icon-class="transparent-btn"></svg-icon>
       </span>
       <div class="header-content">品牌秒杀</div>
