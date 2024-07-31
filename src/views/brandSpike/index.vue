@@ -4,7 +4,7 @@
       <span>
         <svg-icon icon-class="transparent-btn"></svg-icon>
       </span>
-      <div class="header-content">品牌秒杀</div>
+      <div></div>
       <span class="share-btn">
         <svg-icon icon-class="bell-icon-blak"></svg-icon>
       </span>
