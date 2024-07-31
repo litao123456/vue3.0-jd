@@ -2,7 +2,7 @@
   <div>
     <header class="page-header">
       <span>
-        <svg-icon icon-class="transparent-btn"></svg-icon>
+        <svg-icon></svg-icon>
       </span>
       <div></div>
       <span class="share-btn">
